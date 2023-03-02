@@ -12,9 +12,10 @@ Userscript that adds a search bar to tabnews.com.br
 -   [Tampermokey](https://www.tampermonkey.net/) (Firefox, Chrome, Safari e outros)
 -   [Violentmonkey](https://violentmonkey.github.io/) (Firefox, Chrome e Edge)
 
-2. Then install this script from the following link
+2. Then install this script from one of the following links
 
--   [Github](https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js)
+-   [Github](https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js) (Recommended)
+-   [Greasy Fork](https://greasyfork.org/pt-BR/scripts/461020-tabbusca)
 
 # Setting
 
