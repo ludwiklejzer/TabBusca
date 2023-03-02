@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name               TabBusca
+// @namespace          https://raw.githubusercontent.com/ludwiklejzer/TabBusca
 // @description        Add a search bar to tabnews.com.br
 // @description:pt-BR  Adiciona uma barra de busca ao tabnews.com.br
 // @author             Ludwik Lejzer (https://github.com/ludwiklejzer)
@@ -10,6 +11,7 @@
 // @updateURL          https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
 // @downloadURL        https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
 // @supportURL         https://raw.githubusercontent.com/ludwiklejzer/TabBusca/issues
+// @license            MIT
 // ==/UserScript==
 
 // options: "allOrigins" or "corsAnywhere"
