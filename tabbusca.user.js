@@ -1,17 +1,15 @@
 // ==UserScript==
 // @name               TabBusca
-// @namespace          https://raw.githubusercontent.com/ludwiklejzer/TabBusca
 // @description        Add a search bar to tabnews.com.br
 // @description:pt-BR  Adiciona uma barra de busca ao tabnews.com.br
 // @author             Ludwik Lejzer (https://github.com/ludwiklejzer)
 // @icon               https://www.tabnews.com.br/favicon-light.png
 // @homepageURL        https://github.com/ludwiklejzer/TabBusca
-// @version            0.1.0
+// @version            0.2.0
 // @match              *://*.tabnews.com.br/*
 // @updateURL          https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
 // @downloadURL        https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
 // @supportURL         https://raw.githubusercontent.com/ludwiklejzer/TabBusca/issues
-// @license            MIT
 // ==/UserScript==
 
 // options: "allOrigins" or "corsAnywhere"
@@ -20,27 +18,26 @@ let proxy = "allOrigins";
 window.addEventListener("load", () => {
 	"use strict";
 
-	let previousUrl = window.location.href;
-	const body = document.querySelector("body");
+	loadScript();
 
-	// load script every time the page changes
-	// this is necessary due the #header updating its children and ovewritten the search
-	body.addEventListener("click", () => {
-		let currentUrl = window.location.href;
-		const search = document.querySelector("#search-container");
-
-		// this test is necessary due sometimes the page changes, but the #header does not update its children
-		if (!search) {
-			if (previousUrl != currentUrl) {
-				previousUrl = window.location.href;
-				setTimeout(function () {
-					loadScript();
-				}, 500);
+	// configure to observe if the #header changed
+	const observer = new MutationObserver(function (mutations) {
+		mutations.forEach(function (mutation) {
+			if (mutation.type === "childList") {
+				mutation.removedNodes.forEach(function (node) {
+					if (node.id === "header") {
+						loadScript();
+					}
+				});
 			}
-		}
+		});
 	});
 
-	loadScript();
+	// start observing the document for changings
+	observer.observe(document.body, {
+		childList: true,
+		subtree: true,
+	});
 });
 
 function loadScript() {
