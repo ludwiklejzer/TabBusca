@@ -6,7 +6,7 @@
 // @author             Ludwik Lejzer (https://github.com/ludwiklejzer)
 // @icon               https://www.tabnews.com.br/favicon-light.png
 // @homepageURL        https://github.com/ludwiklejzer/TabBusca
-// @version            0.2.0
+// @version            0.3.0
 // @match              *://*.tabnews.com.br/*
 // @updateURL          https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
 // @downloadURL        https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
@@ -219,6 +219,29 @@ function loadScript() {
 		}
 	}
 
+	function setVisitedEffect(element) {
+		let savedLinks = localStorage.getItem("links");
+		savedLinks = savedLinks ? savedLinks.split(",") : new Array();
+		let isLinkSaved = savedLinks.includes(element.href);
+
+		if (!isLinkSaved) {
+			savedLinks.push(element.href);
+			localStorage.setItem("links", savedLinks);
+			getVisitedEffect(element);
+		}
+	}
+
+	function getVisitedEffect(element) {
+		let savedLinks = localStorage.getItem("links");
+
+		savedLinks = savedLinks ? savedLinks.split(",") : new Array();
+		for (const savedLink of savedLinks) {
+			if (element.href === savedLink) {
+				element.style.opacity = "0.6";
+			}
+		}
+	}
+
 	function parseData(data) {
 		let html = data;
 
@@ -247,6 +270,17 @@ function loadScript() {
 				const a = document.createElement("a");
 				a.innerText = title;
 				a.href = link;
+				a.onmouseover = () => {
+					a.style.textDecoration = "underline";
+				};
+				a.onmouseout = () => {
+					a.style.textDecoration = "none";
+				};
+				a.onclick = () => {
+					setVisitedEffect(a);
+				};
+				getVisitedEffect(a);
+
 				li.appendChild(a);
 				list.appendChild(li);
 			}
