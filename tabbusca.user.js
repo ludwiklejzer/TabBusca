@@ -6,7 +6,7 @@
 // @author             Ludwik Lejzer (https://github.com/ludwiklejzer)
 // @icon               https://www.tabnews.com.br/favicon-light.png
 // @homepageURL        https://github.com/ludwiklejzer/TabBusca
-// @version            0.3.0
+// @version            0.3.1
 // @match              *://*.tabnews.com.br/*
 // @updateURL          https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
 // @downloadURL        https://raw.githubusercontent.com/ludwiklejzer/TabBusca/main/tabbusca.user.js
@@ -44,6 +44,7 @@ window.addEventListener("load", () => {
 
 function loadScript() {
 	const header = document.querySelector("#header");
+	const perfilOptionsBtn = header.childNodes[5];
 	const container = document.createElement("div");
 	container.setAttribute("id", "search-container");
 	header.insertBefore(container, header.childNodes[5]);
@@ -72,7 +73,7 @@ function loadScript() {
 	// set styles
 	setCss("#search-container", {
 		display: "flex",
-		marginRight: "8px",
+		marginRight: perfilOptionsBtn ? "8px" : "0px",
 		position: "relative",
 	});
 	setCss("#search-icon svg", {
