@@ -1,3 +1,7 @@
+# This project has been archived because the Tabnews website now has its own search bar. 
+
+___
+
 # TabBusca
 
 Userscript that adds a search bar to tabnews.com.br
